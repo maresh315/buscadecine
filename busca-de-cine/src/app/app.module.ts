@@ -7,18 +7,22 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { HomeComponent } from './home/home.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { CineDetalleComponent } from './cine-detalle/cine-detalle.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    CineDetalleComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     MDBBootstrapModule,
-    HttpClientModule
+    HttpClientModule,
+    NoopAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

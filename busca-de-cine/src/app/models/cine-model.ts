@@ -55,20 +55,53 @@ export class CineModel{
 	}
 
 	
-	public get shortDescription():object {
-		return {
-			Title: this.Title,
-			Year: this.Year,
-			imdbID: this.imdbID,
-			Type: this.Type,
-			Poster: this.Poster
-		}
+	public getTitle():string {
+		return this.Title;
+	}
+	
+	public getYear():string {
+		return this.Year;
+	}
+
+	public getImdbID():string {
+		return this.imdbID;
+	}
+
+	public getType():string {
+		return this.Type;
+	}
+
+	public getPoster():string {
+		return this.Poster;
 	}
 
 	
-	public get fullDescription():object {
-		return 
+	public fullDescription():CineModel {
+		return new CineModel(
+			this.Title,
+			this.Year,
+			this.Rated,
+			this.Released,
+			this.Runtime,
+			this.Genre,
+			this.Director,
+			this.Writer,
+			this.Actors,
+			this.Plot,
+			this.Language,
+			this.Country,
+			this.Awards,
+			this.Poster,
+			this.Ratings,
+			this.Metascore,
+			this.imdbRating,
+			this.imdbVotes,
+			this.imdbID,
+			this.Type,
+			this.BoxOffice,
+			this.Production
+		)
 	}
 	
-	
+
 }

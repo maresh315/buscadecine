@@ -1,3 +1,21 @@
-<p>home works!</p>
-<input type="search" [(ngModel)]='search'>
-<button (click)='enbuscar(search)'>Search</button>
+<div class="md-form">
+	<h1 class="mb-3"> Busca de Cine </h1>
+	<input type="search" [(ngModel)]='search' placeholder="search">
+	<button (click)='enbuscar(search)'>Search</button>
+</div>
+
+<div class="container">
+	<ul class="list-group">
+		<li *ngFor='let cine of cines' href="#" class="list-group-item list-group-item-action"
+		(click)='onCine(cine)'>
+			<div class="d-flex justify-content-start">
+				<img [src]="cine.getPoster()" [alt]="cine.getTitle()" class="align-self-stretch w-25">
+				<div class="ml-3">
+					<h5 class="mb-1">{{cine.getTitle()}}</h5>
+					<small> {{cine.getYear()}} </small>
+				</div>
+			</div>
+		</li>
+	</ul>
+	
+</div>
