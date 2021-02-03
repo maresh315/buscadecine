@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { ApiService } from '../api.service';
+import { BuscaService } from '../busca.service';
 import { CineDisplayModel } from '../models/cine-display-model';
+// import { CineDisplayModel } from '../models/cine-display-model';
 
 @Component({
   selector: 'app-home',
@@ -9,29 +13,22 @@ import { CineDisplayModel } from '../models/cine-display-model';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  search:string;
-  cines:CineDisplayModel[] = [];
-  // cineLink:string =''
+  cines:Observable<CineDisplayModel[]>;
+  buscar:string;
 
-  constructor(private apiService:ApiService, private router:Router) { }
+  constructor(private apiService:ApiService, private buscaServicio:BuscaService, private router:Router) { }
 
   ngOnInit(): void {
   }
   
-  enbuscar(cineTitle:string){
-    this.apiService.buscaCine(cineTitle)?.subscribe(
-      data=>{
-        data.Search.forEach(element => {
-          let cine = new CineDisplayModel(element)
-          this.cines.push(cine)
-        });
-      }
-      );
+  enbuscar(buscar){
+    this.cines = this.apiService.buscaCine(buscar)
+  }
+  
+  enCine(cine:CineDisplayModel){
+    this.buscaServicio.buscar = cine.imdbID;
+    this.router.navigateByUrl('search')
+    
   }
 
-  onCine(cine:CineDisplayModel){
-    let title = cine.getTitle();
-    console.log(title)
-    // this.router.navigateByUrl(`home/${title.trim()}`)
-  }
 }

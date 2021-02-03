@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ApiService } from '../api.service';
+import { BuscaService } from '../busca.service';
 import { CineModel } from '../models/cine-model';
 
 @Component({
@@ -9,14 +11,24 @@ import { CineModel } from '../models/cine-model';
 })
 export class CineDetalleComponent implements OnInit {
 
-  // public title:string;
-  private infos:Array<any>;
+  private id:string;
+  // private cine:CineModel;
+  title:string;
+  poster:string;
+  plot:string
+  credits:any;
 
 
-  constructor(private activatedRoute:ActivatedRoute) { }
+  constructor(private buscaServicio:BuscaService, private apiService:ApiService) { }
 
   ngOnInit(): void {
-    // this.title = this.activatedRoute.snapshot.paramMap.get('title');
+    this.id = this.buscaServicio.buscar;
+    this.apiService.getSingleCine(this.id).subscribe(cine=>{
+      this.title = cine.Title;
+      this.poster = cine.Poster;
+      this.plot = cine.Plot;
+      this.credits = Object.entries(cine.credits())
+    })
   }
 
   

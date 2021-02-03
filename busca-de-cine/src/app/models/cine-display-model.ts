@@ -1,25 +1,14 @@
 export class CineDisplayModel{
-	private Title:string
-	private Year:string
-	private Poster:string
+	Title:string
+	Year:string
+	Poster:string
+	imdbID:string
 
-	constructor({Title, Year, Poster}){
+	constructor(Title: string, Year: string, Poster: string, imdbID: string){
 		this.Title = Title;
 		this.Year = Year;
 		this.Poster = Poster;
-	}
-
-	
-	public getTitle():string {
-		return this.Title;
-	}
-	
-	public getYear():string {
-		return this.Year;
-	}
-
-	public getPoster():string {
-		return this.Poster;
+		this.imdbID = imdbID;
 	}
 
 	

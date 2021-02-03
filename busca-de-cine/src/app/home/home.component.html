@@ -1,21 +1,27 @@
-<div class="md-form">
-	<h1 class="mb-3"> Busca de Cine </h1>
-	<input type="search" [(ngModel)]='search' placeholder="search">
-	<button (click)='enbuscar(search)'>Search</button>
+<div class="mt-5">
+	<h1 class="mb-3 text-center"> Busca de Cine </h1>
+	<form (ngSubmit)="enbuscar(buscar)" class="d-flex justify-content-center">
+		<input 
+			type="text" 
+			placeholder="Search for a Movie"
+			[ngModelOptions]="{standalone: true}"
+			[(ngModel)]="buscar"
+		>
+		<button type="submit" class="btn btn-secondary">Search</button>
+	</form>
 </div>
 
 <div class="container">
 	<ul class="list-group">
-		<li *ngFor='let cine of cines' href="#" class="list-group-item list-group-item-action"
-		(click)='onCine(cine)'>
+		<li *ngFor='let cine of cines | async'  class="list-group-item list-group-item-action"
+		(click)='enCine(cine)'>
 			<div class="d-flex justify-content-start">
-				<img [src]="cine.getPoster()" [alt]="cine.getTitle()" class="align-self-stretch w-25">
+				<img [src]="cine.Poster" [alt]="cine.Title" class="align-self-stretch w-25">
 				<div class="ml-3">
-					<h5 class="mb-1">{{cine.getTitle()}}</h5>
-					<small> {{cine.getYear()}} </small>
+					<h5 class="mb-1">{{cine.Title}}</h5>
+					<small> {{cine.Year}} </small>
 				</div>
 			</div>
 		</li>
 	</ul>
-	
-</div>
+</div> 
